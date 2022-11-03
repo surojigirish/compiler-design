@@ -1,14 +1,13 @@
 package Experiment_1;
 
+import java.util.HashMap;
+
 public class LexicalAnalysis {
 
     public static void main(String[] args) {
 
-//        char[] identifier = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-//                'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'z'};
-
         String[] id = new String[25];
-        int a=0;// Sorted Array of 100
+        int a=0;
         for (char i = 'a'; i < 'z'; i++) {
             id[a] = String.valueOf(i);
             a++;
@@ -16,9 +15,8 @@ public class LexicalAnalysis {
 
         String[] operator = {"+","-","*","/","<",">"};
 
-//        String[] literal = {"1","2","3","4","5","6","7","8","9","10"};
         int n = 10000;
-        String[] literal = new String[n];                       // Sorted Array of 100
+        String[] literal = new String[n];                       // Sorted Array of 10000
         for (int i = 0; i < literal.length; i++) {
             literal[i] = String.valueOf(i + 1);
         }
@@ -41,8 +39,17 @@ public class LexicalAnalysis {
         for (int i = 0; i < toStringArray.length; i++) {
             for (String s : id) {
                 if (toStringArray[i].equals(s)) {
-                    System.out.println(toStringArray[i] + " -> id " + idCounter);
-                    idCounter++;
+                    // Create HashMap to Store Character and its Id
+                    HashMap<String, Integer> identifier = new HashMap<>();
+                    for (int key = 1; key == 1; key++) {
+                        // add elements to hashmap
+                        identifier.put(toStringArray[i], idCounter);
+                        // System.out.println(toStringArray[i] + " -> id " + idCounter);
+                        idCounter++;
+                        String idValue = String.valueOf(identifier.get(key));
+                        System.out.println(idValue);
+                    }
+
                 }
             }
             for (String s : operator) {
