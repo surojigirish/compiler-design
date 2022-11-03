@@ -1,8 +1,6 @@
 package Experiment_1;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class LexicalAnalysis {
