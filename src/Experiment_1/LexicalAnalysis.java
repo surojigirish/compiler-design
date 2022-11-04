@@ -1,6 +1,5 @@
 package Experiment_1;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,31 +14,25 @@ public class LexicalAnalysis {
             a++;
         }
 
-        String[] operator = {"+","-","*","/","<",">"};
+        String[] operator = {"+","-","*","/","<",">", "="};
 
         int n = 1000;
         String[] literal = new String[n];                       // Sorted Array of 10000
         for (int i = 0; i < literal.length; i++) {
             literal[i] = String.valueOf(i + 1);
         }
-
         String[] keyword = { "and", "break", "continue", "class", "else if", "else", "except", "finally", "for","if", "not",
-                "or", "try", "while", "do", "catch"};
+                "or", "try", "while", "do", "catch", "exp", "pos"};
+        String[] symbol = {"!","@",";","%","(",")","{","}"};
 
-        String[] symbol = {"!","=","@",";","%","(",")","{","}"};
-
-        String input = "if ( a > b ) + a - 12 + 1";
-
+        String input = "if ( a > b ) + a - 12 + 1 * ( b - 1 )";   // User input
         String[] toStringArray = null;
-        toStringArray = input.split(" ");
+        toStringArray = input.split(" ");  // Conversion to array of string
 
         int idCounter = 1;
-        int symbolCounter = 1;
-        // Declare HashMap to Store Character and its id
-        Map<String, Integer> identifier = new HashMap<>();
-
-        // Print the input
-        System.out.println("input statement: " + input);
+        int literalCounter = 1;
+        Map<String, Integer> identifier = new HashMap<>();  // Declare HashMap to Store Character and its id (K,V) pair
+        System.out.println("input statement: " + input);  // Print the input values
 
         for (int i = 0; i < toStringArray.length; i++) {
             for (String s : id) {  // Identifier check in the input
@@ -63,29 +56,38 @@ public class LexicalAnalysis {
                     idCounter++;  // Increments the counter for next id
                 }
             }
-            // Operator check in the Input
-            for (String s : operator) {
+            for (String s : operator) {  // Operator check in the Input
                 if (toStringArray[i].equals(s)) {
                     System.out.println(toStringArray[i] + " -> operator");
                 }
             }
-            // Literal check in the Input
-            for (String s : literal) {
+            for (String s : literal) {  // Literal check in the Input
                 if (toStringArray[i].equals(s)) {
-                    System.out.println(toStringArray[i] + " -> literal");
+                    if (!identifier.containsKey(toStringArray[i])) {
+                        identifier.put(toStringArray[i], literalCounter);
+                        for (Map.Entry entry: identifier.entrySet()) {
+                            if (entry.getKey().equals(toStringArray[i])) {
+                                System.out.println(entry.getKey() + " -> literal " + entry.getValue());
+                            }
+                        }
+                    } else {
+                        for (Map.Entry entry: identifier.entrySet()) {
+                            if (entry.getKey().equals(toStringArray[i])) {
+                                System.out.println(entry.getKey() + " -> literal " + entry.getValue());
+                            }
+                        }
+                    }
+                    literalCounter++;
                 }
             }
-            // Keyword check in the Input
-            for (String s : keyword) {
+            for (String s : keyword) {  // Keyword check in the Input
                 if (toStringArray[i].equals(s)) {
                     System.out.println(toStringArray[i] + " -> keyword");
                 }
             }
-            // Symbol check in the Input
-            for (String s : symbol) {
+            for (String s : symbol) {  // Symbol check in the Input
                 if (toStringArray[i].equals(s)) {
-                    System.out.println(toStringArray[i] + " -> symbol " + symbolCounter);
-                    symbolCounter++;
+                    System.out.println(toStringArray[i] + " -> symbol ");
                 }
             }
         }
