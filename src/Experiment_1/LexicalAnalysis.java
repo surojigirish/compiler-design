@@ -1,5 +1,6 @@
 package Experiment_1;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,22 +38,21 @@ public class LexicalAnalysis {
         // Declare HashMap to Store Character and its id
         Map<String, Integer> identifier = new HashMap<>();
 
+        // Print the input
+        System.out.println("input statement: " + input);
+
         for (int i = 0; i < toStringArray.length; i++) {
-            // Identifier check in the input
-            for (String s : id) {
+            for (String s : id) {  // Identifier check in the input
                 if (toStringArray[i].equals(s)) {
-                    // true if HashMap doesn't contain the key
-                    if (!identifier.containsKey(toStringArray[i])) {
+                    if (!identifier.containsKey(toStringArray[i])) {  // true if HashMap doesn't contain the key
                         identifier.put(toStringArray[i], idCounter);  // Storing the <Key, Value> pair
-                        // Iterating through the HashMap
-                        for (Map.Entry entry: identifier.entrySet()) {
+                        for (Map.Entry entry: identifier.entrySet()) {  // Iterating through the HashMap
                             // Check if the HashMap contains any key stored previously and prints the <key, value> for the first time
                             if (entry.getKey().equals(toStringArray[i])) {
                                 System.out.println(entry.getKey() + " -> id " + entry.getValue());
                             }
                         }
                     } else {
-                        // Iterating through the HashMap
                         for (Map.Entry entry: identifier.entrySet()) {
                             // HashMap contains key stored previously and prints the <key, value> for the every time, TRUE
                             if (entry.getKey().equals(toStringArray[i])) {
@@ -60,8 +60,7 @@ public class LexicalAnalysis {
                             }
                         }
                     }
-                    // Increments the counter for next id
-                    idCounter++;
+                    idCounter++;  // Increments the counter for next id
                 }
             }
             // Operator check in the Input
