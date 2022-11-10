@@ -25,7 +25,7 @@ public class LexicalAnalysis {
                 "or", "try", "while", "do", "catch", "exp", "pos"};
         String[] symbol = {"!","@",";","%","(",")","{","}"};
 
-        String input = "if ( a > b ) + a - 12 + 1 * ( b - 1 )";   // User input
+        String input = "if ( a > b )";   // User input
         String[] toStringArray = null;
         toStringArray = input.split(" ");  // Conversion to array of string
 
