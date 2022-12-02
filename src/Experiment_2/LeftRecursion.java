@@ -2,13 +2,16 @@ package Experiment_2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class LeftRecursion {
     public static void main(String[] args) {
-        String leftSide = "T";
-        String rightSide = "T+E|e";
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Left side Non-Terminal");
+        String leftSide = sc.next();
+        System.out.println("Enter Right side of the Grammar");
+        String rightSide = sc.next();
         String repetition = "";
-        String error = "";
 
         String[] toLeftSideArray = null;
         toLeftSideArray = leftSide.split("");

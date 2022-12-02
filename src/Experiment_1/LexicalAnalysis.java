@@ -2,6 +2,7 @@ package Experiment_1;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class LexicalAnalysis {
 
@@ -17,7 +18,7 @@ public class LexicalAnalysis {
         String[] operator = {"+","-","*","/","<",">", "="};
 
         int n = 1000;
-        String[] literal = new String[n];                       // Sorted Array of 10000
+        String[] literal = new String[n];
         for (int i = 0; i < literal.length; i++) {
             literal[i] = String.valueOf(i + 1);
         }
@@ -25,7 +26,9 @@ public class LexicalAnalysis {
                 "or", "try", "while", "do", "catch", "exp", "pos"};
         String[] symbol = {"!","@",";","%","(",")","{","}"};
 
-        String input = "if ( a > b )";   // User input
+        System.out.println("Enter the Input");
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();   // User input  "if ( a > b )"
         String[] toStringArray = null;
         toStringArray = input.split(" ");  // Conversion to array of string
 
@@ -47,11 +50,12 @@ public class LexicalAnalysis {
                         }
                     } else {
                         for (Map.Entry entry: identifier.entrySet()) {
-                            // HashMap contains key stored previously and prints the <key, value> for the every time, TRUE
+                            // HashMap contains key stored previously and prints the <key, value> every time, TRUE
                             if (entry.getKey().equals(toStringArray[i])) {
                                 System.out.println(entry.getKey() + " -> id " + entry.getValue());
                             }
                         }
+                        idCounter--;
                     }
                     idCounter++;  // Increments the counter for next id
                 }
