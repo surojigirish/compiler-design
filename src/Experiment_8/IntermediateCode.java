@@ -16,9 +16,9 @@ public class IntermediateCode {
 
     private static int checkPrecedence(String t) {
         char token = t.charAt(0);
-        for (int i = 0; i < precedence.length; i++) {
-            if (token == precedence[i][0]) {
-                return Integer.parseInt(precedence[i][1] + "");
+        for (char[] chars : precedence) {
+            if (token == chars[0]) {
+                return Integer.parseInt(chars[1] + "");
             }
         }
         return -1;
@@ -29,18 +29,18 @@ public class IntermediateCode {
         char token;
         boolean[] checkPrecess;
         String[][] operators = new String[10][2];
-        String expr = "", temp;
+        String expression = "", temp;
         BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("\nEnter Expression: ");
-        expr = read.readLine();
+        expression = read.readLine();
 
-        checkPrecess = new boolean[expr.length()];
+        checkPrecess = new boolean[expression.length()];
         for (i = 0; i < checkPrecess.length; i++) {
             checkPrecess[i] = false;
         }
 
-        for (i = 0; i < expr.length(); i++) {
-            token = expr.charAt(i);
+        for (i = 0; i < expression.length(); i++) {
+            token = expression.charAt(i);
             for (j = 0; j < precedence.length; j++) {
                 if (token == precedence[j][0]) {
                     operators[opCount][0] = token + "";
@@ -65,30 +65,30 @@ public class IntermediateCode {
         System.out.println();
         for (i = 0; i < opCount; i++) {
             j = Integer.parseInt(operators[i][1] + "");
-            String op1 = "", op2 = "";
+            String operandOne = "", operandTwo = "";
             if (checkPrecess[j - 1]) {
                 if (checkPrecedence(operators[i-1][0]) == checkPrecedence(operators[i][0])) {
-                    op1 = "temp" + i;
+                    operandOne = "temp" + i;
                 } else {
                     for (int k = 0; k < opCount; k++) {
                         if ((j-2) == Integer.parseInt(operators[k][1])) {
-                            op1 = "temp" + (k + 1) + "";
+                            operandOne = "temp" + (k + 1) + "";
                         }
                     }
                 }
             } else {
-                op1 = expr.charAt(j - 1) + "";
+                operandOne = expression.charAt(j - 1) + "";
             }
             if (checkPrecess[j + 1]) {
                 for (int k = 0; k < opCount; k++) {
                     if ((j + 2) == Integer.parseInt(operators[k][1])) {
-                        op2 = "temp" + (k + 1) + "";
+                        operandTwo = "temp" + (k + 1) + "";
                     }
                 }
             } else {
-                op2 = expr.charAt(j + 1) + "";
+                operandTwo = expression.charAt(j + 1) + "";
             }
-            System.out.println("temp" + (i + 1) + " = " + op1 + operators[i][0] + op2);
+            System.out.println("temp" + (i + 1) + " = " + operandOne + operators[i][0] + operandTwo);
             checkPrecess[j] = checkPrecess[j-1] = checkPrecess[j+1] = true;
         }
     }

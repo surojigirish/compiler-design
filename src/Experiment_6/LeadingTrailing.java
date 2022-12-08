@@ -2,7 +2,7 @@ package Experiment_6;
 
 /*
  * Experiment no. 06
- * Aim: To obtain leading and trailing for user specified grammer
+ * Aim: To obtain leading and trailing for user specified grammar
  * Input: Production
  * E -> E+E
  * E -> T
@@ -21,8 +21,9 @@ package Experiment_6;
 
 public class LeadingTrailing {
     public static void main(String[] args) {
-
     }
 
+    private static void leading(String s) {
 
+    }
 }
